@@ -9,6 +9,19 @@
 | 文件 | 说明 |
 | --- | --- |
 | [`AI-GUIDE.md`](AI-GUIDE.md) | 架构、组件、不变量、状态判读、归因决策树、踩坑记录 |
+| [`scripts/`](scripts/) | 可直接运行的实现（PowerShell + Node） |
+
+### scripts/
+
+| 脚本 | 作用 |
+| --- | --- |
+| `start-all.ps1` / `start-all.cmd` | 一键启动：sshd → 计划任务 → 采集 → 等隧道 → 端到端探测 |
+| `tunnel-monitor.ps1` | 30 秒采样，写 CSV，异常告警（状态机：DOWN/STALL/TTYD/RELAY） |
+| `tunnel-death-capture.ps1` | 抓 `Connection closed` 事件，记录断连现场 |
+| `ws-probe.js` | WebSocket 探针，判断 ttyd 是否真的出帧 |
+
+**使用前**：把脚本里的 `<CLOUD_IP>`、`<TTYD_USER>` 换成你自己的值，并与 `.ttyd-pass` 放在同一目录。
+
 
 ## 适用场景
 
